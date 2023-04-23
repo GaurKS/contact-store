@@ -1,10 +1,11 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { UserController } from './user/user.controller';
+import { UserService } from './user/user.service';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerMiddleware } from './common/logger.middleware';
 import { getTypeOrmConfigs } from './config/typeorm.config';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -13,9 +14,8 @@ import { getTypeOrmConfigs } from './config/typeorm.config';
       envFilePath: '.env',
     }),
     TypeOrmModule.forRoot(getTypeOrmConfigs()),
+    UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

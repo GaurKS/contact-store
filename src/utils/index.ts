@@ -4,10 +4,10 @@
  * @param {number} length - length of the id including prefix.
  * @returns {string} - unique id.
  */
-export const generateObjectId = (
+export const generateObjectId = async (
   prefix: string | undefined,
   length = 8,
-): string => {
+): Promise<string> => {
   let id = prefix || '';
 
   // Always start the id with a char
