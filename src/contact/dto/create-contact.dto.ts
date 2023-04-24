@@ -29,18 +29,18 @@ export class UserAddressProp {
   country: string;
 }
 
-export class CreateUserDto {
-  constructor(partial?: Partial<CreateUserDto>) {
+export class CreateContactDto {
+  constructor(partial?: Partial<CreateContactDto>) {
     Object.assign(this, partial);
   }
 
   @IsOptional()
   @IsString()
-  name: string;
+  name?: string;
 
   @IsOptional()
   @IsString()
-  phoneNumber: string;
+  mobileNumber?: string;
 
   @IsOptional()
   @ValidateNested({ each: true })
@@ -54,4 +54,8 @@ export class CreateUserDto {
   @IsOptional()
   @IsString()
   instagram?: string;
+
+  @IsNotEmpty()
+  @IsString()
+  companyName: string;
 }
